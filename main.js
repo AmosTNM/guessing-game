@@ -3,6 +3,7 @@ const btnTry = document.querySelector('#btnTry')
 const btnReset = document.querySelector('#btnReset')
 const screen1 = document.querySelector('.screen1')
 const screen2 = document.querySelector('.screen2')
+const alert = document.querySelector('h1')
 let randomNumber = Math.round(Math.random() * 10)
 let xAttempts = 1
 
@@ -24,11 +25,13 @@ function handleTryClick(event) {
     || inputNumber.value > 10
     || inputNumber.value == null
     || inputNumber.value == ''
-  
-  if (error) {
-    inputNumber.value = ''
-    return
-  } else {
+    
+    if (error) {
+      inputNumber.value = ''
+      alert.textContent = 'ENTRADA INVÁLIDA'
+      return
+    } else {
+      alert.textContent = 'Jogo da Adivinhação'
     if (Number(inputNumber.value) == randomNumber) {
       toggleScreen()
       if (xAttempts == 1) {
@@ -45,7 +48,6 @@ function handleTryClick(event) {
 
   inputNumber.value = ''
   xAttempts++
-  console.log(randomNumber)
 }
 function handleResetClick() {
   toggleScreen()
